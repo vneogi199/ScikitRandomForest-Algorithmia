@@ -28,4 +28,4 @@ def apply(input):
     
     
     
-    return "hello {}".format(input)
+    return "hello {}".format(list(zip(train[features], clf.feature_importances_)))
