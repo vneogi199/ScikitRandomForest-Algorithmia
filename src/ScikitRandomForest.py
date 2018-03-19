@@ -5,6 +5,8 @@ from sklearn.metrics import accuracy_score
 from sklearn.metrics import confusion_matrix
 # API calls will begin at the apply() method, with the request body passed as 'input'
 # For more details, see algorithmia.com/developers/algorithm-development/languages
+
+client = Algorithmia.client()
 def random_forest_classifier(features, target):
     """
     To train the random forest classifier with features and target data
@@ -33,4 +35,4 @@ def apply(input):
     dataset = process_input('data://vneogi199/training/Algorithmia-phishing.csv')
     trained_model = random_forest_classifier(dataset[:,:29], dataset[:,29])
     print("Trained model :: "+ trained_model)
-    return "hello {}".format(list(zip(train[features], clf.feature_importances_)))
+    return dataset
