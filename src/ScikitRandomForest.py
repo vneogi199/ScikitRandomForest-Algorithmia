@@ -30,7 +30,7 @@ def process_input(input):
 
 
 def apply(input):
-    dataset = process_input(data://vneogi199/training/Algorithmia-phishing.csv)
+    dataset = process_input('data://vneogi199/training/Algorithmia-phishing.csv')
     trained_model = random_forest_classifier(dataset[:,:29], dataset[:,29])
     print("Trained model :: "+ trained_model)
     return "hello {}".format(list(zip(train[features], clf.feature_importances_)))
