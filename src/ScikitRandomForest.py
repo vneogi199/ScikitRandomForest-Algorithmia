@@ -17,7 +17,8 @@ def random_forest_classifier(features, target):
     return clf
 
 def apply(input):
-    dataset = pd.read_csv('data://vneogi199/training/Algorithmia-phishing.csv')
+    # dataset = pd.read_csv('data://vneogi199/training/Algorithmia-phishing.csv')
+    dataset = pd.read_csv('data://.my/training/Algorithmia-phishing.csv')
     trained_model = random_forest_classifier(dataset[:,:29], dataset[:,29])
     print("Trained model :: "+ trained_model)
     return "hello {}".format(list(zip(train[features], clf.feature_importances_)))
