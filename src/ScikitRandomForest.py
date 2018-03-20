@@ -34,5 +34,5 @@ def apply(input):
     rf.fit(trainArr, trainRes) # fit the data to the algorithm
     testArr = test.as_matrix(cols)
     result1 = rf.predict(testArr)
-    #test['predictions'] = result1
-    return list(result1)
+    test['predictions'] = result1
+    return list(test['predictions'])
