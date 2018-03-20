@@ -30,9 +30,9 @@ def apply(input):
     colsRes = ['Result']
     trainArr = train.as_matrix(cols) #training array
     trainRes = train.as_matrix(colsRes) # training results
-    rf = RandomForestClassifier(n_estimators=100) # initialize
+    rf = RandomForestClassifier(n_estimators=10) # initialize
     rf.fit(trainArr, trainRes) # fit the data to the algorithm
     testArr = test.as_matrix(cols)
     result1 = rf.predict(testArr)
-    test['predictions'] = result1
-    return list(test['predictions'])
+    #test['predictions'] = result1
+    return list(result1)
