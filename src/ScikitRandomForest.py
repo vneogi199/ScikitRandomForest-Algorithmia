@@ -14,7 +14,8 @@ def process_input(input):
     if input.startswith('data:'):
         file_url = client.file(input).getFile().name
         try:
-            np_array = np.genfromtxt(file_url, delimiter=',')
+            np_array=pd.read_csv(file_url)
+            //np_array = np.genfromtxt(file_url, delimiter=',')
             print(np_array)
             return np_array
         except Exception as e:
