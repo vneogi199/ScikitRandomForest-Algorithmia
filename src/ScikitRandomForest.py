@@ -16,11 +16,11 @@ def process_input(input):
         try:
             np_array=pd.read_csv(file_url)
             #np_array = np.genfromtxt(file_url, delimiter=',')
-            print(np_array)
+            #print(np_array)
             return np_array
         except Exception as e:
-            print("Could not create numpy array from data", e)
-            sys.exit(0)
+            #print("Could not create numpy array from data", e)
+            #sys.exit(0)
 
 def apply(input):
     train=process_input('data://vneogi199/training/Algorithmia-phishing.csv')
@@ -35,4 +35,4 @@ def apply(input):
     testArr = test.as_matrix(cols)
     result1 = rf.predict(testArr)
     test['predictions'] = result1
-    return test['predictions']
+    return list(test['predictions'])
