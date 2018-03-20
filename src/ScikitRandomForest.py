@@ -1,24 +1,13 @@
 import Algorithmia
 import pandas as pd
 import numpy as np
-import sys
+
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import confusion_matrix
+
 # API calls will begin at the apply() method, with the request body passed as 'input'
 # For more details, see algorithmia.com/developers/algorithm-development/languages
 
 client = Algorithmia.client()
-def random_forest_classifier(features, target):
-    """
-    To train the random forest classifier with features and target data
-    :param features:
-    :param target:
-    :return: trained random forest classifier
-    """
-    clf = RandomForestClassifier()
-    clf.fit(features, target)
-    return clf
 
 def process_input(input):
     # Create numpy array from csv file passed as input in apply()
@@ -32,9 +21,16 @@ def process_input(input):
             print("Could not create numpy array from data", e)
             sys.exit(0)
 
-
 def apply(input):
-    dataset = process_input('data://vneogi199/training/Algorithmia-phishing.csv')
-    trained_model = random_forest_classifier(dataset[:,:29], dataset[:,29])
-    print("Trained model :: "+ trained_model)
-    return dataset
+    train=process_input('data://vneogi199/training/Algorithmia-phishing.csv')
+    test = process_input(input)
+    cols =list(train.columns)
+    cols=cols[:len(cols)-1]
+    colsRes = ['Result']
+    trainArr = train.as_matrix(cols) #training array
+    trainRes = train.as_matrix(colsRes) # training results
+    rf = RandomForestClassifier(n_estimators=100) # initialize
+    rf.fit(trainArr, trainRes) # fit the data to the algorithm
+    testArr = test.as_matrix(cols)
+    result1 = rf.predict(testArr)
+    return test['predictions']
