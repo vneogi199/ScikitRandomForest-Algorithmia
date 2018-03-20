@@ -1,7 +1,7 @@
 import Algorithmia
 import pandas as pd
 import numpy as np
-
+import sys
 from sklearn.ensemble import RandomForestClassifier
 
 # API calls will begin at the apply() method, with the request body passed as 'input'
@@ -20,7 +20,7 @@ def process_input(input):
             return np_array
         except Exception as e:
             #print("Could not create numpy array from data", e)
-            #sys.exit(0)
+            sys.exit(0)
 
 def apply(input):
     train=process_input('data://vneogi199/training/Algorithmia-phishing.csv')
